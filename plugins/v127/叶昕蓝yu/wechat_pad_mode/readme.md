@@ -2,24 +2,28 @@
 
 作者：叶昕蓝yu
 
-WAuxiliary 插件，通过 DexKit 定位微信内部平板判断方法并 hook 返回值，使微信以平板模式运行，实现手机与平板同时在线。
+WAuxiliary 插件，修改设备信息使微信以平板模式运行，实现手机与平板同时在线。
 
 ## 安装
 
-将 `wechat_pad_mode` 文件夹放入 WAuxiliary 插件目录，启用后重启微信。
+将 `WeChatPad` 文件夹放入 WAuxiliary 插件目录，启用后重启微信。
+
+## 配置
+
+编辑 `config.prop`（首次运行自动生成）：
+
+```properties
+enabled=true
+model=Lenovo TB-9707F
+brand=Lenovo
+```
 
 ## 原理
 
-微信内部存在设备类型判断方法，插件通过 DexKit 搜索包含 `Lenovo TB-9707F` 字符串的成员方法，在方法执行前拦截并返回 `true`，触发平板模式。
+微信启动时读取 `android.os.Build.MODEL` 判断设备类型。插件在微信加载前将 MODEL 改为平板型号即可。
 
 ## 兼容
 
 - WAuxiliary 最新版
 - 微信 8.0.30+
 - Android 8.0+
-
-## 注意事项
-
-- 本插件仅修改客户端行为，不涉及网络请求篡改
-- 不修改系统级 `Build` 字段，降低被检测风险
-- 建议配合 Zygisk 版本使用以获得更稳定的体验
