@@ -13,12 +13,8 @@ void onLoad() {
                 param.setResult(true);
             });
             log("pad ok");
-        } else {
-            log("pad: method not found");
         }
-    } catch (Throwable e) {
-        log("pad err: " + e.getMessage());
-    }
+    } catch (Throwable ignored) {}
 }
 
 void onUnload() {
